@@ -2,8 +2,11 @@ package main
 
 import (
 	"example.com/backend"
-)	
+)
 
 func main() {
-	backend.Run(":9003");
+	a := backend.App{}
+	a.Port = ":9003"
+	a.Initialize()
+	a.Run()
 }
