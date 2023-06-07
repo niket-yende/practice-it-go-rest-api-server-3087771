@@ -138,13 +138,14 @@ func (a *App) newOrder(w http.ResponseWriter, r *http.Request) {
 			respondWithError(w, http.StatusInternalServerError, err.Error())
 			return
 		}
-
-		respondWithJSON(w, http.StatusOK, o)
 	}
+
+	respondWithJSON(w, http.StatusOK, o)
 }
 
 func (a *App) newOrderItems(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
+
 	var ois []orderItem
 	json.Unmarshal(reqBody, &ois)
 
@@ -158,6 +159,8 @@ func (a *App) newOrderItems(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+
+	respondWithJSON(w, http.StatusOK, ois)
 }
 
 func (a *App) Run() {
